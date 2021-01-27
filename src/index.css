@@ -1,7 +1,8 @@
 body {
   text-align: center;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   color: #3f4850;
+  background-color: #f2f5f6;
 }
 
 h2 {
@@ -27,22 +28,36 @@ a {
 
 .search-form button {
   outline: none;
-  background-color: #438bbd;
-  border: none;
-  padding: 0px 15px;
-  border-radius: 0 0.35em 0.35em 0;
+  border: 1px solid black;
+  padding: 15px;
+  border-radius: 50%;
   cursor: pointer;
+  margin-left: 10px;
+  box-shadow: 0px 4px 2px;
+  background-image: linear-gradient(-45deg, #16222a, #3a6073);
+  background-size: 200% 200%;
+  animation: gradientEffect 1s linear infinite;
+}
+@keyframes gradientEffect {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 input {
   font-size: 1em;
   width: 100%;
-  background-color: #edeff0;
+  background-color: #ffffff;
   padding: 10px 15px;
-  border: 3px solid #d7dbdf;
-  border-right: none;
-  border-radius: 0.35em 0 0 0.35em;
+  border: 2px solid black;
   outline: none;
+  border-radius: 25px;
 }
 
 .main-nav li {
@@ -52,16 +67,17 @@ input {
 
 .main-nav a {
   display: block;
-  background: #438bbd;
   border-radius: 3px;
   padding: 5px;
-  color: #fff;
+  color: black;
+  font-weight: 600;
 }
 
 .main-nav .active,
 .main-nav a:hover,
 .search-form button:hover {
-  background-color: #275270;
+  background-color: black;
+  color: white;
 }
 
 .photo-container ul {
@@ -77,6 +93,8 @@ input {
   height: 165px;
   overflow: hidden;
   margin-bottom: 15px;
+  border-radius: 15px;
+  box-shadow: 2px 8px 18px;
 }
 
 .photo-container ul img {
@@ -93,7 +111,7 @@ input {
   width: 100%;
 }
 
-@media only screen and (max-width: 767px)  {
+@media only screen and (max-width: 767px) {
   body {
     padding-top: 2em;
   }
@@ -103,7 +121,7 @@ input {
   }
 }
 
-@media only screen and (min-width: 768px)  {
+@media only screen and (min-width: 768px) {
   body {
     padding-top: 4em;
   }
@@ -116,8 +134,9 @@ input {
   .main-nav ul {
     display: flex;
     justify-content: center;
+    margin-right: 20px;
   }
-  
+
   .main-nav li {
     margin: 10px;
     width: 100px;

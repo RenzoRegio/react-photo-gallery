@@ -1,21 +1,21 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import Photo from "./Photo";
+import Base from "./Base";
 
-const Nav = (props) => {
+import { Consumer } from "../Context";
+
+const Nav = ({ match }) => {
+  const value = match.params.value;
   return (
-    <nav className="main-nav">
-      <ul>
-        <li onClick={() => props.onSearch("sunset")}>
-          <NavLink to="/search/sunset">Sunset</NavLink>
-        </li>
-        <li onClick={() => props.onSearch("waterfalls")}>
-          <NavLink to="/search/waterfalls">Waterfalls</NavLink>
-        </li>
-        <li onClick={() => props.onSearch("rainbows")}>
-          <NavLink to="/search/rainbows">Rainbows</NavLink>
-        </li>
-      </ul>
-    </nav>
+    <Consumer>
+      {(context) => (
+        <Photo
+          photos={context.photos}
+          value={value}
+          isLoading={context.isLoading}
+        />
+      )}
+    </Consumer>
   );
 };
 

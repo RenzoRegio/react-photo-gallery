@@ -68,3 +68,46 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+---
+
+body
+background-color: #f2f5f6;
+
+.photo-container ul li {
+border-radius: 15px;
+box-shadow: 2px 8px 18px;
+
+.search-form button {
+padding: 15px;
+border: 1px solid black;
+margin-left: 10px;
+background-image: linear-gradient(-45deg, #16222a, #3a6073);
+background-size: 200% 200%;
+animation: gradientEffect 1s linear infinite;
+}
+@keyframes gradientEffect {
+0% {
+background-position: 0% 50%;
+}
+50% {
+background-position: 100% 50%;
+}
+100% {
+background-position: 0% 50%;
+}
+}
+
+input {
+border-radius: 25px;
+border: 2px solid black;
+.main-nav a {
+color: black;
+font-weight: 600;
+
+.main-nav .active,
+.main-nav a:hover,
+.search-form button:hover {
+background-color: black;
+color: white;
+}

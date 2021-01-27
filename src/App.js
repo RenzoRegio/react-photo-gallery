@@ -1,14 +1,18 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import apiKey from "./config";
 import axios from "axios";
 
+import { Provider } from "./Context";
+
 import Base from "./Components/Base";
-import Photo from "./Components/Photo";
+import Nav from "./Components/Nav";
+import NotFound from "./Components/NotFound";
 
 class App extends Component {
   state = {
     photos: [],
+    isLoading: true,
   };
 
   defaultSearch = (query) => {
@@ -17,7 +21,7 @@ class App extends Component {
         `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`
       )
       .then((response) =>
-        this.setState({ photos: response.data.photos.photo })
+        this.setState({ photos: response.data.photos.photo, isLoading: false })
       );
   };
 
@@ -27,18 +31,19 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <Base
-          onSearch={this.defaultSearch}
-          photos={this.state.photos}
-          performSearch={this.performSearch}
-        />
-        <Route exact path="/search/:value" component={Photo} />
-        <Route
-          path="/search"
-          render={() => <Photo photos={this.state.photos} />}
-        />
-      </BrowserRouter>
+      <Provider
+        value={{
+          performSearch: this.defaultSearch,
+          retrieveQuery: this.retrieveQuery,
+          photos: this.state.photos,
+          isLoading: this.state.isLoading,
+        }}
+      >
+        <BrowserRouter>
+          <Route path="/" component={Base} />
+          <Route path="/search/:value" component={Nav} />
+        </BrowserRouter>
+      </Provider>
     );
   }
 }

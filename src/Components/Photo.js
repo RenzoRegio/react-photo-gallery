@@ -1,9 +1,10 @@
 import React from "react";
-
-const Photo = ({ photos, match }) => {
-  console.log(match);
+import NotFound from "./NotFound";
+const Photo = ({ photos, value, isLoading }) => {
   let images;
-  if (photos) {
+  let message;
+  if (photos.length > 0) {
+    message = `${value} Photos`;
     images = photos.map((photo) => {
       return (
         <li key={photo.id}>
@@ -15,11 +16,13 @@ const Photo = ({ photos, match }) => {
       );
     });
   } else {
-    images = <li></li>;
+    message = <NotFound />;
+    images = "";
   }
+
   return (
     <div className="photo-container">
-      <h2></h2>
+      <h2>{isLoading ? "Loading..." : message}</h2>
       <ul>{images}</ul>
     </div>
   );
