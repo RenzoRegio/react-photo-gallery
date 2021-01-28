@@ -1,20 +1,24 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import apiKey from "./config";
-import axios from "axios";
-
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "./Context";
+import axios from "axios";
+import apiKey from "./config";
 
-import Home from "./Components/Home";
-import Nav from "./Components/Nav";
+//Components
+import Search from "./Components/Search";
+import Photo from "./Components/Photo";
 import httpError from "./Components/http404";
 
 class App extends Component {
   state = {
     photos: [],
     isLoading: true,
-    query: "hi",
   };
+
+  /**
+   * Retrieves data from the flickr API and sets the states accordinly.
+   * @param {*} query - The keyword or value that defines the images to be displayed on the screen.
+   */
 
   performSearch = (query) => {
     axios
@@ -25,29 +29,8 @@ class App extends Component {
         this.setState({
           photos: response.data.photos.photo,
           isLoading: false,
-          query: query,
         })
       );
-  };
-
-  retrieveQuery = (q) => {
-    this.performSearch(q);
-  };
-
-  componentDidMount() {
-    window.onpopstate = this.handlePopState;
-  }
-
-  componentWillUnmout() {
-    window.onpopstate = null;
-  }
-
-  handlePopState = (e) => {
-    e.preventDefault();
-    const query = document.querySelector(".photo-container > h2");
-    if (query.textContent !== "Loading...") {
-      this.performSearch(query.textContent);
-    }
   };
 
   render() {
@@ -57,16 +40,12 @@ class App extends Component {
           performSearch: this.performSearch,
           photos: this.state.photos,
           isLoading: this.state.isLoading,
-          applyParams: this.applyParams,
-          retrieveQuery: this.retrieveQuery,
         }}
       >
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/" render={() => <Redirect to="/search" />} />
-            <Route exact path="/search" component={Home} />
-            <Route exact path="/search/:value" component={Nav} />
+            <Route exact path="/" component={Search} />
+            <Route exact path="/search/:value" component={Photo} />
             <Route component={httpError} />
           </Switch>
         </BrowserRouter>
