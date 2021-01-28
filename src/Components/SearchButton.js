@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * Renders the button element for the search bar located in Search.js.
+ */
+
 const SearchButton = () => {
   return (
     <button type="submit" className="search-button">

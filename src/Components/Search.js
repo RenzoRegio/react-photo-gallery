@@ -30,7 +30,7 @@ class Search extends Component {
           };
 
           /**
-           * Callback function that is executed only when the form's onSubmit event handler is called. Pushes the created path to the history object and calls performSearch function.
+           * Callback function that is executed only when the form's onSubmit event handler is called. Pushes the created path to the history object and calls performSearch function to initiate the search and eventually display the images.
            * @param {*} e - the event that takes place when the onpopstate event handler is executed.
            */
 

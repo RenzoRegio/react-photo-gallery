@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+/**
+ * Rendered to the screen if the URL path does not exist causing a 404 or not-found error. Executed and Accessed by Switch and Route in App.js.
+ */
+
 const httpError = () => {
   return (
     <div className="errorContainer">
